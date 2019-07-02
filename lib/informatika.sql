@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 19, 2019 at 07:08 PM
+-- Generation Time: Jul 02, 2019 at 05:23 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -31,19 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_kategorisurat` (
   `id_kategori` varchar(15) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `kode` varchar(5) NOT NULL
+  `kode` varchar(5) NOT NULL,
+  `file` text,
+  `ket` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_kategorisurat`
 --
 
-INSERT INTO `tbl_kategorisurat` (`id_kategori`, `nama`, `kode`) VALUES
-('KSURAT001', 'Surat Keterangan Kuliah', 'SKK'),
-('KSURAT002', 'Surat Magang', 'SM'),
-('KSURAT003', 'Surat Riset', 'SR'),
-('KSURAT004', 'Surat Rekomendasi', 'SRK'),
-('KSURAT005', 'Surat Keterangan Kuliah', 'SKL');
+INSERT INTO `tbl_kategorisurat` (`id_kategori`, `nama`, `kode`, `file`, `ket`) VALUES
+('KSURAT001', 'Surat Keterangan Kuliah', 'SKK', 'KSURAT001.pdf', 'Surat Keterangan Kuliah merupakan surat yang mendeskripsikan mahasiswa tersebut adalah Mahasiswa yang sedang berkuliah di STT PLN Jakarta'),
+('KSURAT002', 'Surat Magang', 'SM', 'KSURAT002.pdf', 'Surat Keterangan Magang merupakan surat yang dibuat untuk pengantar kepada perusahaan terkait tempat mahasiswa tersebut magang.'),
+('KSURAT003', 'Surat Riset', 'SR', 'KSURAT003.pdf', 'Surat Riset merupakan surat yang dibuat untuk permohonan melakukan Riset/Penelitian terhadap perusahaan ataupun internal kampus.'),
+('KSURAT004', 'Surat Rekomendasi', 'SRK', 'KSURAT004.pdf', 'Surat Rekomendasi merupakan surat yang digunakan untuk memberikan pengakuan rekomendasi dari Kampus dalam membantu mahasiswa terkait mengurus sesuatu kebutuhan yang terkait.'),
+('KSURAT005', 'Surat Keterangan Lulus', 'SKL', 'KSURAT005.pdf', 'Surat Keterangan Lulus merupakan surat untuk mendeskripsikan bahwa mahasiswa terkait telat lulus pada prodi dan dibuktikan dengan data tugas akhir yang telah dikerjakan dan diselesaikan.');
 
 -- --------------------------------------------------------
 
@@ -68,8 +70,9 @@ CREATE TABLE `tbl_mahasiswa` (
 INSERT INTO `tbl_mahasiswa` (`nim`, `nama_lengkap`, `email`, `ipk`, `semester`, `password`, `terakhir_login`) VALUES
 ('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 8, 'umar11', NULL),
 ('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 8, 'firman11', NULL),
-('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 8, 'pace11', NULL),
-('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 8, 'angga11', NULL);
+('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 8, 'pace11', '2019-07-02 02:50:29'),
+('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 8, 'angga11', NULL),
+('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 8, 'Rian3', NULL);
 
 -- --------------------------------------------------------
 
@@ -82,16 +85,9 @@ CREATE TABLE `tbl_suratkonfirmasi` (
   `id_kategori` varchar(15) NOT NULL,
   `nim` varchar(15) NOT NULL,
   `status_surat` int(1) NOT NULL,
-  `nama_surat` text NOT NULL
+  `file` text NOT NULL,
+  `data` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_suratkonfirmasi`
---
-
-INSERT INTO `tbl_suratkonfirmasi` (`id_suratkonfirmasi`, `id_kategori`, `nim`, `status_surat`, `nama_surat`) VALUES
-(10, 'KSURAT001', '201431299', 1, 'apa'),
-(11, 'KSURAT001', '201431300', 1, 'apa');
 
 -- --------------------------------------------------------
 
@@ -112,7 +108,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `role`, `terakhir_login`) VALUES
-(1, 'admin', 'admin11', 0, '2019-05-19 17:04:41');
+(1, 'admin', 'admin11', 0, '2019-07-02 02:43:53');
 
 --
 -- Indexes for dumped tables
@@ -152,7 +148,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_suratkonfirmasi`
 --
 ALTER TABLE `tbl_suratkonfirmasi`
-  MODIFY `id_suratkonfirmasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_suratkonfirmasi` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
