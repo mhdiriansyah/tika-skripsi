@@ -12,12 +12,13 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <form action="?page=surattambahpro" method="post" enctype="multipart/form-data">
+                <form action="?page=suratkonfirmasi" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div clas="form-group">
                                 <label>NIM</label><br>
                                 <a class="btn btn-success"><i class="fa fa-user"></i> <?= $datauser['nim'] ?></a>
+                                <input type="hidden" name="counter" value="0">
                                 <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                                 <input type="hidden" name="nim" value="<?= $datauser['nim'] ?>">
                             </div>
@@ -26,16 +27,24 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div clas="form-group">
-                                <label>Alamat</label>
-                                <textarea class="form-control" name="alamat" placeholder="masukkan alamat anda ..." autocomplete="OFF"></textarea>
+                                <label>Ditujukan Kepada</label>
+                                <input class="form-control" name="ditujukan" placeholder="ditujukan kepada cth: Kepala HRD PLN Persero ..." autocomplete="OFF" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div clas="form-group">
-                                <label>Judul Tugas Akhir</label>
-                                <textarea class="form-control" name="alamat" placeholder="masukkan judul tugas akhir anda..." autocomplete="OFF"></textarea>
+                                <label>Nama Perusahaan</label>
+                                <input class="form-control" name="nama_perusahaan" placeholder="nama perusahaan tujuan ..." autocomplete="OFF" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div clas="form-group">
+                                <label>Alamat</label>
+                                <textarea class="form-control" name="alamat" placeholder="alamat perusahaan tujuan ..." autocomplete="OFF" required></textarea>
                             </div>
                         </div>
                     </div>

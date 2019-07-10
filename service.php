@@ -20,7 +20,6 @@ $rowMahasiswa = [];
 $q = mysqli_query($conn, "SELECT * FROM tbl_mahasiswa");
 while($data=mysqli_fetch_array($q)){
     $isi['nim'] = $data['nim'];
-    $isi['nama_lengkap'] = $data['nama_lengkap'];
     $rowMahasiswa[] = $isi;
 }
     json_encode($rowMahasiswa);
@@ -59,13 +58,42 @@ function getFile($params){
     return $temp;
 }
 
-function periodeTanggal($a,$b){
-    if(!empty($a) && !empty($b)){
-        $temp = date('d M Y',strtotime($a)).' sampai '.date('d M Y',strtotime($b));
-    } else {
-        $temp = 'tidak ada tanggal';
+function periodeTanggal($a,$b,$c){
+    switch($c){
+        case 1;
+            if(!empty($a) && !empty($b)){
+                $temp = date('d M Y',strtotime($a)).' sampai '.date('d M Y',strtotime($b));
+            } else {
+                $temp = 'tidak ada tanggal';
+            }
+        break;
+        default:
+            if(!empty($a) && !empty($b)){
+                $temp = date('d M Y',strtotime($a)).' s/d '.date('d M Y',strtotime($b));
+            } else {
+                $temp = 'tidak ada tanggal';
+            }
+        break;
     }
     return $temp;
+}
+
+function tanggal_indo($tanggal){
+	$bulan = array (1 =>   'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+			);
+	$split = explode('-', $tanggal);
+	return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
 }
 
 
