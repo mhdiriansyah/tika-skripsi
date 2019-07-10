@@ -28,6 +28,11 @@ elseif ($page == "logout")              include("page/logout.php");
     elseif ($page == "persetujuansuratedit")         include("page/persetujuansurat/persetujuansuratedit.php");
     elseif ($page == "persetujuansurateditpro")      include("page/persetujuansurat/persetujuansurateditpro.php");
     elseif ($page == "persetujuansurathapus")        include("page/persetujuansurat/persetujuansurathapus.php");
+
+    // -------------------------- list surat --------------------------
+    elseif ($page == "listsurat")                    include("page/listsurat/listsurat.php");
+    elseif ($page == "listsuratlihat")               include("page/listsurat/listsuratlihat.php");
+    elseif ($page == "listsuratacc")                 include("page/listsurat/listsuratacc.php");
     
     // -------------------------- surat --------------------------
     elseif ($page == "surat")                        include("page/surat/surat.php");

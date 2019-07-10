@@ -56,7 +56,7 @@
                         <div class="col-md-6">
                             <div clas="form-group">
                                 <label>Semester</label>
-                                <input type="number" class="form-control" name="semester" placeholder="masukkan semester mahasiswa ..." value="<?= $data['semester'] ?>" required>
+                                <input type="text" class="form-control kapital" name="semester" placeholder="masukkan semester mahasiswa ..." value="<?= $data['semester'] ?>" required>
                             </div>
                         </div>
                     </div>

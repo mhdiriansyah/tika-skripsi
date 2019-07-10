@@ -30,6 +30,7 @@
 					<div class="left">
 						<div class="content">
 							<div class="header">
+								<img src="assets/img/sisuka.png" alt="sisuka">
 								<p class="lead">Login</p>
 							</div>
 							<form action="login.php" method="post" enctype="multipart/form-data">

@@ -20,6 +20,8 @@
                                 <th>Surat</th>
                                 <th>File</th>
                                 <th>Status</th>
+                                <th>Dibuat</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,16 +29,22 @@
                             $no = 1;
                             $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi
                                                     JOIN tbl_kategorisurat ON tbl_suratkonfirmasi.id_kategori=tbl_kategorisurat.id_kategori");
-                            while($data=mysqli_fetch_array($q)){ 
-                                if (in_array($datauser['nim'], json_decode($data['data']))){
+                            while($data=mysqli_fetch_array($q)){
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $data['nama'] ?></td>
-                                    <td><?= getFileSurat($data['file_surat']) ?></td>
+                                    <td><a href="file/surat/<?=$data['file_surat'] ?>" class="btn btn-info btn-xs" target="_blank" title="lihat file"><?= $data['file_surat'] ?></a></td>
                                     <td><?= getStatus($data['status_surat']) ?></td>
+                                    <td><?= tanggal_indo($data['created_at']) ?></td>
+                                    <td>
+                                        <a href="?page=listsuratlihat&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-warning"><i class="fa fa-eye"></i> lihat</a>
+                                        <?php if($data['status_surat'] == 0){ ?>
+                                        <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> setujui</a>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
-                            <?php $no++; }} ?>
+                            <?php $no++; }?>
                         </tbody>
                     </table>
                 </div>

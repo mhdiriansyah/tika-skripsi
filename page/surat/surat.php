@@ -7,7 +7,7 @@
                     <p class="panel-subtitle"></p>
                 </div>
                 <div class="pull-right">
-                    <a href="#" class="btn btn-info"><i class="fa fa-file"></i> Lihat Surat Ku</a>
+                    <a href="?page=persetujuansurat" class="btn btn-info"><i class="fa fa-file"></i> Lihat Surat Ku</a>
                 </div>
             </div>
         </div>

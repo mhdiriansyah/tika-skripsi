@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                             <div clas="form-group">
                                 <label>Semester</label>
-                                <input type="number" class="form-control" name="semester" placeholder="masukkan semester mahasiswa ..." autocomplete="OFF" required>
+                                <input type="text" class="form-control kapital" name="semester" placeholder="masukkan semester mahasiswa cth: VII ..." autocomplete="OFF" required>
                             </div>
                         </div>
                     </div>

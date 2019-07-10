@@ -10,7 +10,7 @@
                             <?php if ($role == 1) { ?>
                             <li><a href="?page=mahasiswa" class="">Data Mahasiswa</a></li>
                             <li><a href="?page=kategori" class="">Kategori Surat</a></li>
-                            <li><a href="?page=persetujuansurat" class="">Persetujuan Surat</a></li>
+                            <li><a href="?page=listsurat" class="">Persetujuan Surat</a></li>
                             <?php } else { ?>
                             <li><a href="?page=surat" class="">Surat Ku</a></li>
                             <?php } ?>

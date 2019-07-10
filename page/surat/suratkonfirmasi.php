@@ -12,6 +12,11 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
+                <a href="?page=persetujuansurat" class="btn btn-success"><i class="fa fa-file"></i> Lihat daftar surat</a>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <i class="fa fa-info-circle"></i> Periksa kembali data-data dibawah ini. Jika ada <strong>NIM</strong> yang berstatus <strong>tidak terdaftar</strong>, akan secara otomatis tidak tertera pada surat yang diajukan.
                     Jika data sudah sesuai silahkan klik button proses :) 
@@ -283,6 +288,7 @@
                                     $dArray = json_decode($arrayData);
                                     $kArray = json_decode($arrayKet);
 
+
                                     $temp = '<div class="table-responsive">';
                                     $temp .= '<table class="table table-bordered"><thead><tr><th>Nim</th><th>Status</th></tr></thead><tbody>';
                                     foreach($dArray as $row){
@@ -307,11 +313,11 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form action="./pdf/cetak.php" method="post" enctype="multipart/form-data">
+                <form action="./pdf/cetak.php" method="post" target="_blank" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <textarea style="display:none;" name="arrData"><?= $arrayData ?></textarea>
                     <textarea style="display:none;" name="arrKet"><?= $arrayKet ?></textarea>
-                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="Proses">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Proses">
                 </form>
             </div>
         </div>

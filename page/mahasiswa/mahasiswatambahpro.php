@@ -20,7 +20,7 @@
                         $nama       = $_POST['nama_lengkap'];
                         $email      = $_POST['email'];
                         $ipk        = $_POST['ipk'];
-                        $semester   = $_POST['semester'];
+                        $semester   = strtoupper($_POST['semester']);
                         $password   = $_POST['password'];
                     
                         $insert = mysqli_query($conn, "INSERT INTO tbl_mahasiswa SET
