@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-warning alert-dismissible" role="alert">
-                    <i class="fa fa-info-circle"></i> Periksa kembali data-data dibawah ini. Jika ada <strong>NIM</strong> yang berstatus <strong>tidak terdaftar</strong>, akan secara otomatis tidak tertera pada surat yang diajukan.
+                    <i class="fa fa-info-circle"></i> Periksa kembali data-data dibawah ini. Jika ada <strong>NIM</strong> yang berstatus <strong>tidak terdaftar</strong> dan <strong> sedang aktif di surat yang berbeda</strong>, akan secara otomatis tidak tertera pada surat yang diajukan.
                     Jika data sudah sesuai silahkan klik button proses :) 
                 </div>
             </div>
@@ -34,6 +34,16 @@
 
                         switch($id){
                             case 'KSURAT002': // sudah
+                                $sameArr = [];
+                                $r = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id' AND status_surat=0");
+                                $jum = mysqli_num_rows($r);
+                                if ($jum > 0){
+                                    while($same = mysqli_fetch_array($r)){
+                                        $sameArr = array_merge($sameArr, json_decode($same['data']));
+                                        $sameArr = array_unique($sameArr);
+                                        $sameArr = array_values($sameArr);
+                                    }
+                                }
                                 $arrNim = [];
                                 $arrData = [];
                                 if($counter>0){
@@ -44,6 +54,8 @@
                                 } else {
                                     $arrNim[] = $nim;
                                 }
+                                    $arrNim = array_unique($arrNim);
+                                    $arrNim = array_values($arrNim);
                                     json_encode($arrNim);
 
                                 foreach($arrNim as $key => $value){

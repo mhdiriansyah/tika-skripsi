@@ -24,14 +24,34 @@ while($data=mysqli_fetch_array($q)){
 }
     json_encode($rowMahasiswa);
 
-function getStatus($params){
-    switch ($params) {
-        case 0:
-            $nil = '<span class="label label-warning"><i class="fa fa-refresh"></i> diproses</span>';
+function getStatus($id,$params){
+    if ($id == 'KSURAT002'){
+        switch ($params) {
+            case 1:
+                $nil = '<span class="label label-success"><i class="fa fa-check"></i>sudah dapat diambil</span>';
+                break;
+            case 2:
+                $nil = '<span class="label label-warning"><i class="fa fa-spinner fa-pulse"></i> diproses</span>';
+                break;
+            case 3:
+                $nil = '<span class="label label-primary"><i class="fa fa-check"></i> sudah di acc perusahaan</span>';
             break;
-        default:
-            $nil = '<span class="label label-success"><i class="fa fa-check"></i> selesai</span>';
-            break;
+            default:
+                $nil = '<span class="label label-danger"><i class="fa fa-remove"></i> ditolak</span>';
+                break;
+        }
+    } else {
+        switch ($params) {
+            case 1:
+                $nil = '<span class="label label-success"><i class="fa fa-check"></i>sudah dapat diambil</span>';
+                break;
+            case 2:
+                $nil = '<span class="label label-warning"><i class="fa fa-spinner fa-pulse"></i> diproses</span>';
+                break;
+            default:
+                $nil = '<span class="label label-danger"><i class="fa fa-remove"></i> ditolak</span>';
+                break;
+        }
     }
     return $nil;
 }
@@ -90,6 +110,35 @@ function tanggal_indo($tanggal){
 				'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
 	$split = explode('-', $tanggal);
 	return $split[2].' '.$bulan[(int)$split[1]].' '.$split[0];
+}
+
+function jumSuratPengajuan($params){
+    include 'lib/koneksi.php';
+    $count = 0;
+    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi");
+    while($data=mysqli_fetch_array($q)){
+        if (in_array($params, json_decode($data['data']))){
+            $count++;
+        }
+    }
+    if ($count > 0){
+        $nil = '<span class="label label-success">'.$count.' surat pengajuan</span>';
+    } else {
+        $nil = '<span class="label label-danger">belum ada</span>';
+    }
+    return $nil;
+}
+
+function jumSurat($params){
+    include 'lib/koneksi.php';
+    $count = 0;
+    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi");
+    while($data=mysqli_fetch_array($q)){
+        if (in_array($params, json_decode($data['data']))){
+            $count++;
+        }
+    }
+    return $count;
 }
 
 

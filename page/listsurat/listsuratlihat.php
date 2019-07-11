@@ -50,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>Status</td>
-                            <td><?= getStatus($data['status_surat']) ?></td>
+                            <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -77,8 +77,16 @@
     </div>
     <div class="panel-footer">
         <a href="?page=listsurat" class="btn btn-default">kembali</a>
-        <?php if($data['status_surat'] == 0){ ?>
-        <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> setujui</a>
+        <?php 
+        if ($data['id_kategori'] == 'KSURAT002'){
+            if($data['status_surat'] == 2){ ?>
+        <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
         <?php } ?>
+        <?php if($data['status_surat'] == 1){ ?>
+        <a href="?page=listsurataccperusahaan&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui perusahaan</a>
+        <?php }} else { 
+            if($data['status_surat'] == 2){ ?>
+             <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+        <?php }} ?>
     </div>
 </div>

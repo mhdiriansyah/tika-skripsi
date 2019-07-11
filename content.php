@@ -33,7 +33,9 @@ elseif ($page == "logout")              include("page/logout.php");
     elseif ($page == "listsurat")                    include("page/listsurat/listsurat.php");
     elseif ($page == "listsuratlihat")               include("page/listsurat/listsuratlihat.php");
     elseif ($page == "listsuratacc")                 include("page/listsurat/listsuratacc.php");
-    
+    elseif ($page == "listsuratmhs")                 include("page/listsurat/listsuratmhs.php");
+    elseif ($page == "listsurataccperusahaan")       include("page/listsurat/listsurataccperusahaan.php");
+
     // -------------------------- surat --------------------------
     elseif ($page == "surat")                        include("page/surat/surat.php");
     elseif ($page == "surattambah")                  include("page/surat/surattambah.php");

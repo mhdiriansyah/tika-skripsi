@@ -8,16 +8,16 @@
 				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
+						<!-- <li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
 								<span class="badge bg-danger">1</span>
 							</a>
 							<ul class="dropdown-menu notifications">
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Updates Plugins</a></li>
-								<li><a href="#" class="more">See all notifications</a></li>
+								<li><a href="#" class="notification-item"><span class="badge bg-warning">new</span> Pengajuan Surat Magang Baru</a></li>
+								<li><a href="#" class="notification-item"><span class="badge bg-warning">new</span> Updates Plugins</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?= $photo ?>" class="img-circle" alt="Avatar"> <span><?= $nama ?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">

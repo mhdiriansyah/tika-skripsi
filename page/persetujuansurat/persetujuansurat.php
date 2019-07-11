@@ -20,6 +20,7 @@
                                 <th>Surat</th>
                                 <th>File</th>
                                 <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +35,10 @@
                                     <td><?= $no ?></td>
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= getFileSurat($data['file_surat']) ?></td>
-                                    <td><?= getStatus($data['status_surat']) ?></td>
+                                    <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
+                                    <td>
+                                    <a href="?page=persetujuansurathapus&id=<?= $data['id_suratkonfirmasi'] ?>&file=<?= $data['file_surat'] ?>" class="btn btn-danger" title="hapus"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             <?php $no++; }} ?>
                         </tbody>

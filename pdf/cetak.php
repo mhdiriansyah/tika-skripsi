@@ -124,7 +124,7 @@ foreach(json_decode($_POST['arrData']) as $row){
     $filename = $id_k.".pdf";
     $date = date('Y-m-d');
     mysqli_query($conn, "INSERT INTO tbl_suratkonfirmasi (id_suratkonfirmasi, id_kategori, status_surat, file_surat, data, created_at)
-                        VALUES ('$id_k', '$id', 0, '$filename', '$nice', '$date')");
+                        VALUES ('$id_k', '$id', 2, '$filename', '$nice', '$date')");
     file_put_contents('../file/surat/'.$filename, $output);    
 }
 // Output akan menghasilkan PDF (1 = download dan 0 = preview)

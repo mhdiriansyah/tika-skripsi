@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 10, 2019 at 09:38 PM
+-- Generation Time: Jul 11, 2019 at 10:34 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -68,11 +68,11 @@ CREATE TABLE `tbl_mahasiswa` (
 --
 
 INSERT INTO `tbl_mahasiswa` (`nim`, `nama_lengkap`, `email`, `ipk`, `semester`, `password`, `terakhir_login`) VALUES
-('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 'VIII', 'umar11', '2019-07-10 13:49:09'),
-('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 'VIII', 'firman11', '2019-07-10 13:51:34'),
-('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', 'pace11', '2019-07-10 19:03:29'),
-('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 'VIII', 'angga11', '2019-07-09 13:03:48'),
-('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 'VIII', 'Rian3', '2019-07-09 13:03:50');
+('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 'VIII', '201431290', '2019-07-10 21:23:17'),
+('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 'VIII', '201431291', '2019-07-11 04:45:21'),
+('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', '201431299', '2019-07-11 02:57:02'),
+('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 'VIII', '201431300', '2019-07-10 21:23:38'),
+('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 'VIII', '201531029', '2019-07-10 21:23:44');
 
 -- --------------------------------------------------------
 
@@ -95,9 +95,8 @@ CREATE TABLE `tbl_suratkonfirmasi` (
 --
 
 INSERT INTO `tbl_suratkonfirmasi` (`id_suratkonfirmasi`, `id_kategori`, `status_surat`, `file_surat`, `data`, `created_at`, `acc_at`) VALUES
-('SK000001', 'KSURAT001', 1, 'SK000001.pdf', '[\"201431299\"]', '2019-07-10', NULL),
-('SK000002', 'KSURAT002', 0, 'SK000002.pdf', '[\"201431290\",\"201431291\",\"201431300\"]', '2019-07-10', NULL),
-('SK000003', 'KSURAT004', 0, 'SK000003.pdf', '[\"201431291\"]', '2019-07-10', NULL);
+('SK000001', 'KSURAT002', 3, 'SK000001.pdf', '[\"201431299\",\"201431300\"]', '2019-07-11', NULL),
+('SK000002', 'KSURAT001', 1, 'SK000002.pdf', '[\"201431291\"]', '2019-07-11', NULL);
 
 -- --------------------------------------------------------
 
@@ -118,7 +117,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `role`, `terakhir_login`) VALUES
-(1, 'admin', 'admin11', 0, '2019-07-10 18:51:14');
+(1, 'admin', 'admin11', 0, '2019-07-11 04:11:09');
 
 --
 -- Indexes for dumped tables

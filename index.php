@@ -64,8 +64,23 @@
 	</script>
 	<script>
 		$(document).ready(function(){
+			$('#btnListSurat').addClass('disabled');
+			$('#listMhs').hide();
+
 			$(".kapital").keyup(function(){
 				$(this).val($(this).val().toUpperCase());
+			});
+			$("#btnListMhs").click(function(){
+				$('#btnListSurat').removeClass('disabled');
+				$('#btnListMhs').addClass('disabled');
+				$('#listMhs').fadeIn();
+				$('#listSurat').hide();
+			});
+			$("#btnListSurat").click(function(){
+				$('#btnListMhs').removeClass('disabled');
+				$('#btnListSurat').addClass('disabled');
+				$('#listMhs').hide();
+				$('#listSurat').fadeIn();
 			});
 		});
 	</script>
