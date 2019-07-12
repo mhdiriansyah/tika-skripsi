@@ -28,13 +28,14 @@ function getStatus($id,$params){
     if ($id == 'KSURAT002'){
         switch ($params) {
             case 1:
-                $nil = '<span class="label label-success"><i class="fa fa-check"></i>sudah dapat diambil</span>';
+                $nil = '<span class="label label-info"><i class="fa fa-check"></i> telah di acc jurusan</span>';
                 break;
             case 2:
                 $nil = '<span class="label label-warning"><i class="fa fa-spinner fa-pulse"></i> diproses</span>';
                 break;
             case 3:
-                $nil = '<span class="label label-primary"><i class="fa fa-check"></i> sudah di acc perusahaan</span>';
+                $nil = '<span class="label label-primary"><i class="fa fa-check"></i> sudah di acc perusahaan</span><br>'.
+                        '<span class="label label-success"><i class="fa fa-check"></i> sudah dapat diambil</span>';
             break;
             default:
                 $nil = '<span class="label label-danger"><i class="fa fa-remove"></i> ditolak</span>';
@@ -139,6 +140,34 @@ function jumSurat($params){
         }
     }
     return $count;
+}
+
+function jumMhsSurat($id,$params){
+    include 'lib/koneksi.php';
+    $count = 0;
+    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id'");
+    while($data=mysqli_fetch_array($q)){
+        if (in_array($params, json_decode($data['data']))){
+            $count++;
+        }
+    }
+    return $count;
+}
+
+function reminderChangePassword($role, $nim){
+    include "lib/koneksi.php";
+    $temp = '';
+    if ($role == 2){
+        $q = mysqli_query($conn, "SELECT * FROM tbl_mahasiswa WHERE nim='$nim'");
+        $data = mysqli_fetch_array($q);
+        if (strcmp($nim,$data['password']) == 0){
+            $temp = '<div class="alert alert-info alert-dismissible" role="alert">'.
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'.
+                        '<i class="fa fa-info-circle"></i> Untuk prosedur keamanan, segera lalukan perubahan <strong>Password</strong> anda pada menu <a href="?page=profil">profilku</a>'.
+                    '</div>';
+        }
+    }
+    return $temp;
 }
 
 

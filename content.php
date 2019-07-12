@@ -33,6 +33,7 @@ elseif ($page == "logout")              include("page/logout.php");
     elseif ($page == "listsurat")                    include("page/listsurat/listsurat.php");
     elseif ($page == "listsuratlihat")               include("page/listsurat/listsuratlihat.php");
     elseif ($page == "listsuratacc")                 include("page/listsurat/listsuratacc.php");
+    elseif ($page == "listsurattolak")               include("page/listsurat/listsurattolak.php");
     elseif ($page == "listsuratmhs")                 include("page/listsurat/listsuratmhs.php");
     elseif ($page == "listsurataccperusahaan")       include("page/listsurat/listsurataccperusahaan.php");
 
@@ -49,6 +50,10 @@ elseif ($page == "logout")              include("page/logout.php");
     elseif ($page == "suratSRK")                     include("page/surat/suratSRK.php");
     elseif ($page == "suratSM")                      include("page/surat/suratSM.php");
     elseif ($page == "suratkonfirmasi")              include("page/surat/suratkonfirmasi.php");
+
+    // -------------------------- profil --------------------------
+    elseif ($page == "profil")                       include("page/profil/profil.php");
+    elseif ($page == "profiledit")                   include("page/profil/profiledit.php");
 
 
     else "Halaman tidak ditemukan";

@@ -21,7 +21,9 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?= $photo ?>" class="img-circle" alt="Avatar"> <span><?= $nama ?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
+								<?php if ($role == 2){ ?>
 								<li><a href="?page=profil"><i class="fa fa-user"></i> <span>Profilku</span></a></li>
+								<?php } ?>
 								<li><a href="?page=logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>

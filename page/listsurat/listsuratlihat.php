@@ -81,12 +81,15 @@
         if ($data['id_kategori'] == 'KSURAT002'){
             if($data['status_surat'] == 2){ ?>
         <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+        <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
         <?php } ?>
         <?php if($data['status_surat'] == 1){ ?>
         <a href="?page=listsurataccperusahaan&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui perusahaan</a>
+        <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
         <?php }} else { 
             if($data['status_surat'] == 2){ ?>
              <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+             <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
         <?php }} ?>
     </div>
 </div>

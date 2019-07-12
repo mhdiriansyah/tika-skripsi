@@ -38,6 +38,7 @@
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
+					<?= reminderChangePassword($role, $_SESSION['username']) ?>
 					<?php include "content.php"; ?>
 				</div>
 			</div>
@@ -65,7 +66,7 @@
 	<script>
 		$(document).ready(function(){
 			$('#btnListSurat').addClass('disabled');
-			$('#listMhs').hide();
+			$('#listMhs,.editpassword').hide();
 
 			$(".kapital").keyup(function(){
 				$(this).val($(this).val().toUpperCase());
@@ -82,6 +83,11 @@
 				$('#listMhs').hide();
 				$('#listSurat').fadeIn();
 			});
+			$("#btneditpassword").click(function(){
+				$('.editpassword').fadeIn(500);
+				$('.informasiumum').hide();
+			});
+
 		});
 	</script>
 	<script>

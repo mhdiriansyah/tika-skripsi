@@ -1,25 +1,8 @@
 <?php 
 
-    if ($role == 1){
         $mhs = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_mahasiswa"));
         $kategori_surat = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_kategorisurat"));
         $surat_konfirmasi = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_suratkonfirmasi"));
-    } else {
-        $surat_active = 0;
-        $surat_finish = 0;
-        $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE status_surat=0");
-        while($datas = mysqli_fetch_array($q)){
-            if (in_array($datauser['nim'], json_decode($datas['data']))){
-                $surat_active++;
-            }
-        }
-        $r = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE status_surat=1");
-        while($datas = mysqli_fetch_array($r)){
-            if (in_array($datauser['nim'], json_decode($datas['data']))){
-                $surat_finish++;
-            }
-        }
-    }
 
 ?>
 
@@ -63,8 +46,8 @@
                 <div class="metric">
                     <span class="icon"><i class="fa fa-envelope"></i></span>
                     <p>
-                        <span class="number"><?= $surat_active ?></span>
-                        <span class="title">Surat Diproses</span>
+                        <span class="number"><?= jumMhsSurat('KSURAT001',$datauser['nim']) ?></span>
+                        <span class="title">Surat Keterangan Kuliah</span>
                     </p>
                 </div>
             </div>
@@ -72,8 +55,35 @@
                 <div class="metric">
                     <span class="icon"><i class="fa fa-envelope"></i></span>
                     <p>
-                        <span class="number"><?= $surat_finish ?></span>
-                        <span class="title">Surat Selesai</span>
+                        <span class="number"><?= jumMhsSurat('KSURAT002',$datauser['nim']) ?></span>
+                        <span class="title">Surat Magang</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-envelope"></i></span>
+                    <p>
+                        <span class="number"><?= jumMhsSurat('KSURAT003',$datauser['nim']) ?></span>
+                        <span class="title">Surat Riset</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-envelope"></i></span>
+                    <p>
+                        <span class="number"><?= jumMhsSurat('KSURAT004',$datauser['nim']) ?></span>
+                        <span class="title">Surat Rekomendasi</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-envelope"></i></span>
+                    <p>
+                        <span class="number"><?= jumMhsSurat('KSURAT005',$datauser['nim']) ?></span>
+                        <span class="title">Surat Keterangan Lulus</span>
                     </p>
                 </div>
             </div>
