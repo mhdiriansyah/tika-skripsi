@@ -44,7 +44,7 @@ function getStatus($id,$params){
     } else {
         switch ($params) {
             case 1:
-                $nil = '<span class="label label-success"><i class="fa fa-check"></i>sudah dapat diambil</span>';
+                $nil = '<span class="label label-success"><i class="fa fa-check"></i> sudah dapat diambil</span>';
                 break;
             case 2:
                 $nil = '<span class="label label-warning"><i class="fa fa-spinner fa-pulse"></i> diproses</span>';
@@ -161,7 +161,7 @@ function reminderChangePassword($role, $nim){
         $q = mysqli_query($conn, "SELECT * FROM tbl_mahasiswa WHERE nim='$nim'");
         $data = mysqli_fetch_array($q);
         if (strcmp($nim,$data['password']) == 0){
-            $temp = '<div class="alert alert-info alert-dismissible" role="alert">'.
+            $temp = '<div class="alert alert-danger alert-dismissible" role="alert">'.
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'.
                         '<i class="fa fa-info-circle"></i> Untuk prosedur keamanan, segera lalukan perubahan <strong>Password</strong> anda pada menu <a href="?page=profil">profilku</a>'.
                     '</div>';

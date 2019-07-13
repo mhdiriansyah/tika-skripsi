@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2019 at 10:34 AM
+-- Generation Time: Jul 13, 2019 at 05:14 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -69,9 +69,9 @@ CREATE TABLE `tbl_mahasiswa` (
 
 INSERT INTO `tbl_mahasiswa` (`nim`, `nama_lengkap`, `email`, `ipk`, `semester`, `password`, `terakhir_login`) VALUES
 ('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 'VIII', '201431290', '2019-07-10 21:23:17'),
-('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 'VIII', '201431291', '2019-07-11 04:45:21'),
-('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', '201431299', '2019-07-11 02:57:02'),
-('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 'VIII', '201431300', '2019-07-10 21:23:38'),
+('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 'VIII', '201431291', '2019-07-12 07:28:55'),
+('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', '201431299', '2019-07-13 03:05:42'),
+('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 'VIII', '201431300', '2019-07-12 21:17:45'),
 ('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 'VIII', '201531029', '2019-07-10 21:23:44');
 
 -- --------------------------------------------------------
@@ -117,7 +117,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `role`, `terakhir_login`) VALUES
-(1, 'admin', 'admin11', 0, '2019-07-11 04:11:09');
+(1, 'admin', 'admin11', 0, '2019-07-12 21:18:43');
 
 --
 -- Indexes for dumped tables
