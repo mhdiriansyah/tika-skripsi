@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 13, 2019 at 05:14 AM
+-- Generation Time: Jul 21, 2019 at 02:12 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -70,9 +70,9 @@ CREATE TABLE `tbl_mahasiswa` (
 INSERT INTO `tbl_mahasiswa` (`nim`, `nama_lengkap`, `email`, `ipk`, `semester`, `password`, `terakhir_login`) VALUES
 ('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 'VIII', '201431290', '2019-07-10 21:23:17'),
 ('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 'VIII', '201431291', '2019-07-12 07:28:55'),
-('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', '201431299', '2019-07-13 03:05:42'),
+('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', '201431299', '2019-07-21 11:42:59'),
 ('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 'VIII', '201431300', '2019-07-12 21:17:45'),
-('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 'VIII', '201531029', '2019-07-10 21:23:44');
+('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 'VIII', '201531029', '2019-07-13 07:25:10');
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,8 @@ CREATE TABLE `tbl_suratkonfirmasi` (
 
 INSERT INTO `tbl_suratkonfirmasi` (`id_suratkonfirmasi`, `id_kategori`, `status_surat`, `file_surat`, `data`, `created_at`, `acc_at`) VALUES
 ('SK000001', 'KSURAT002', 3, 'SK000001.pdf', '[\"201431299\",\"201431300\"]', '2019-07-11', NULL),
-('SK000002', 'KSURAT001', 1, 'SK000002.pdf', '[\"201431291\"]', '2019-07-11', NULL);
+('SK000002', 'KSURAT001', 2, 'SK000002.pdf', '[\"201431291\"]', '2019-07-11', NULL),
+('SK000003', 'KSURAT002', 2, 'SK000003.pdf', '[\"201531029\",\"201431299\",\"201431291\"]', '2019-07-13', NULL);
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `role`, `terakhir_login`) VALUES
-(1, 'admin', 'admin11', 0, '2019-07-12 21:18:43');
+(1, 'admin', 'admin11', 0, '2019-07-21 11:40:16');
 
 --
 -- Indexes for dumped tables
