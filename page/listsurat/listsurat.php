@@ -26,6 +26,7 @@
                                 <th>Surat</th>
                                 <th>File</th>
                                 <th>Status</th>
+                                <th>Bukti Upload</th>
                                 <th>Dibuat</th>
                                 <th>Aksi</th>
                             </tr>
@@ -42,6 +43,7 @@
                                     <td><?= $data['nama'] ?></td>
                                     <td><a href="file/surat/<?=$data['file_surat'] ?>" class="btn btn-info btn-xs" target="_blank" title="lihat file"><?= $data['file_surat'] ?></a></td>
                                     <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
+                                    <td><?= (!empty($data['file_surat'])) ? '<a class="btn btn-info btn-xs" href="file/'.$data['file_upload'].'" target="_blank">bukti upload</a>' : '' ?></td>
                                     <td><?= tanggal_indo($data['created_at']) ?></td>
                                     <td>
                                         <a href="?page=listsuratlihat&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i> lihat</a>

@@ -20,6 +20,7 @@
                                 <th>Surat</th>
                                 <th>File</th>
                                 <th>Status</th>
+                                <th>Bukti Upload</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -36,7 +37,11 @@
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= getFileSurat($data['file_surat']) ?></td>
                                     <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
+                                    <td><?= (!empty($data['file_surat'])) ? '<a class="btn btn-info btn-xs" href="file/'.$data['file_upload'].'" target="_blank">bukti upload</a>' : '' ?></td>
                                     <td>
+                                    <?php if ($data['id_kategori'] == 'KSURAT002' && $data['status_surat'] == 1 && empty($data['file_surat'])){ ?>
+                                    <a href="?page=persetujuanupload&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary">Upload Bukti</a>
+                                    <?php } ?>
                                     <a href="?page=persetujuansurathapus&id=<?= $data['id_suratkonfirmasi'] ?>&file=<?= $data['file_surat'] ?>" class="btn btn-danger" title="hapus"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
