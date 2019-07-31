@@ -56,6 +56,9 @@ elseif ($page == "logout")              include("page/logout.php");
     elseif ($page == "profil")                       include("page/profil/profil.php");
     elseif ($page == "profiledit")                   include("page/profil/profiledit.php");
 
+    // -------------------------- report --------------------------
+    elseif ($page == "report")                       include("page/report/report.php");
+
 
     else "Halaman tidak ditemukan";
 ?>

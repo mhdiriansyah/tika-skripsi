@@ -64,6 +64,14 @@
 		});
 	</script>
 	<script>
+    $(document).ready(function() {
+      $("#isinotifikasi").load("notifikasi.php");
+        var refreshId = setInterval(function(){
+          $("#isinotifikasi").load('notifikasi.php');
+      }, 2000);
+    });
+</script>
+	<script>
 		$(document).ready(function(){
 			$('#btnListSurat').addClass('disabled');
 			$('#listMhs,.editpassword').hide();

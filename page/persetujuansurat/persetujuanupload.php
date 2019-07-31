@@ -19,7 +19,7 @@
                         <div class="col-md-6">
                             <div clas="form-group">
                                 <label>Upload</label>
-                                <input type="text" name="id" value="<?= $_GET['id'] ?>">
+                                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                                 <input type="file" class="form-control" name="file" required>
                             </div>
                         </div>
@@ -47,11 +47,11 @@
         $extension     = strtolower(end($x));
         $newfilename   = 'BUKTI_'.$id.".".$extension;
 
-        move_uploaded_file($loc_file,"file/$newfilename");
+        move_uploaded_file($loc_file,"file/bukti/$newfilename");
 
         $update = mysqli_query($conn, "UPDATE tbl_suratkonfirmasi SET
                             file_upload                 = '$newfilename'
-                            WHERE id_suratkonfirmasi    = '$id'");
+                            WHERE kd_suratkonfirmasi    = '$id'");
 
         if ($update){
             echo '<div class="alert alert-success alert-dismissible" role="alert">'.

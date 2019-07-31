@@ -1,8 +1,8 @@
 <?php 
 
-        $mhs = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_mahasiswa"));
-        $kategori_surat = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_kategorisurat"));
-        $surat_konfirmasi = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_suratkonfirmasi"));
+    $mhs = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_mahasiswa"));
+    $kategori_surat = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_kategorisurat"));
+    $surat_konfirmasi = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tbl_suratkonfirmasi GROUP BY kd_suratkonfirmasi"));
 
 ?>
 

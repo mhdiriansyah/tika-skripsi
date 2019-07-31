@@ -66,10 +66,28 @@ function keteranganSurat($params){
     return $temp;
 }
 
+function buktiUpload($params){
+    if (!empty($params)){
+        $temp = '<a href="file/bukti/'.$params.'" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-file-alt"></i> '.$params.'</a>';
+    } else {
+        $temp = '<span class="label label-danger">belum ada</span>';
+    }
+    return $temp;
+}
+
 function getFileSurat($params){
     if(!empty($params)){
         $temp = '<a class="btn btn-info btn-block" href="file/surat/'.$params.'" target="_blank" title="lihat file">'.$params.'</a><br>';
         $temp .= '<embed src="file/surat/'.$params.'" type="application/pdf"   height="300px" width="100%">';
+    } else {
+        $temp = '<span class="label label-warning">belum ada file</span>';
+    }
+    return $temp;
+}
+
+function getOnlyFileSurat($params){
+    if(!empty($params)){
+        $temp = '<a class="btn btn-info btn-xs" href="file/surat/'.$params.'" target="_blank" title="lihat file">'.$params.'</a>';
     } else {
         $temp = '<span class="label label-warning">belum ada file</span>';
     }
@@ -116,12 +134,8 @@ function tanggal_indo($tanggal){
 function jumSuratPengajuan($params){
     include 'lib/koneksi.php';
     $count = 0;
-    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi");
-    while($data=mysqli_fetch_array($q)){
-        if (in_array($params, json_decode($data['data']))){
-            $count++;
-        }
-    }
+    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE nim='$params'");
+    $count = mysqli_num_rows($q);
     if ($count > 0){
         $nil = '<span class="label label-success">'.$count.' surat pengajuan</span>';
     } else {
@@ -145,12 +159,8 @@ function jumSurat($params){
 function jumMhsSurat($id,$params){
     include 'lib/koneksi.php';
     $count = 0;
-    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id'");
-    while($data=mysqli_fetch_array($q)){
-        if (in_array($params, json_decode($data['data']))){
-            $count++;
-        }
-    }
+    $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id' AND nim='$params'");
+    $count = mysqli_num_rows($q);
     return $count;
 }
 
@@ -166,6 +176,40 @@ function reminderChangePassword($role, $nim){
                         '<i class="fa fa-info-circle"></i> Untuk prosedur keamanan, segera lalukan perubahan <strong>Password</strong> anda pada menu <a href="?page=profil">profilku</a>'.
                     '</div>';
         }
+    }
+    return $temp;
+}
+
+function ketKategori($params,$data){
+    switch($params){
+        case 'KSURAT002':
+            $get = json_decode($data);
+            $temp = '<span class="label label-primary">Ditujukan: '.$get[0]->ditujukan.'</span><br>';
+            $temp .= '<span class="label label-primary">Nama Perusahaan: '.$get[0]->nama_perusahaan.'</span><br>';
+            $temp .= '<span class="label label-primary">Alamat: '.$get[0]->alamat_perusahaan.'</span>';
+        break;
+        case 'KSURAT003':
+            $get = json_decode($data);
+            $temp = '<span class="label label-primary">Ditujukan: '.$get[0]->ditujukan.'</span><br>';
+            $temp .= '<span class="label label-primary">Nama Perusahaan: '.$get[0]->nama_perusahaan.'</span><br>';
+            $temp .= '<span class="label label-primary">Alamat: '.$get[0]->alamat_perusahaan.'</td>';
+        break;
+        case 'KSURAT004':
+            $get = json_decode($data);
+            $temp = '<span class="label label-primary">Tempat & Tgl Lahir: '.$get[0]->tempat.', '.$get[0]->tgl_lahir.'</span><br>';
+            $temp .= '<span class="label label-primary">Alamat: '.$get[0]->alamat.'</span><br>';
+            $temp .= '<span class="label label-primary">Alasan: '.$get[0]->alasan.'</span>';
+        break;
+        case 'KSURAT005':
+            $get = json_decode($data);
+            $temp = '<span class="label label-primary">Alamat: '.$get[0]->alamat.'</span><br>';
+            $temp .= '<span class="label label-primary">Judul Skripsi: '.$get[0]->judul_skripsi.'</span>';
+        break;
+        default: 
+            $get = json_decode($data);
+            $temp = '<span class="label label-primary">Tempat & Tgl Lahir: '.$get[0]->tempat.', '.$get[0]->tgl_lahir.'</span><br>';
+            $temp .= '<span class="label label-primary">Alamat: '.$get[0]->alamat.'</span>';
+        break;
     }
     return $temp;
 }

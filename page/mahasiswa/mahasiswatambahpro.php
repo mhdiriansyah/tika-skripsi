@@ -28,7 +28,7 @@
                                 nama_lengkap    = '$nama',
                                 email           = '$email',
                                 ipk             = $ipk,
-                                semester        = $semester,
+                                semester        = '$semester',
                                 password        = '$password'");
                         
                         if ($insert){

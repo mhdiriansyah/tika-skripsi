@@ -28,6 +28,7 @@
                                 <th>Status</th>
                                 <th>Bukti Upload</th>
                                 <th>Dibuat</th>
+                                <th width=300>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -35,30 +36,32 @@
                             <?php 
                             $no = 1;
                             $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi
-                                                    JOIN tbl_kategorisurat ON tbl_suratkonfirmasi.id_kategori=tbl_kategorisurat.id_kategori");
+                                                    JOIN tbl_kategorisurat ON tbl_suratkonfirmasi.id_kategori=tbl_kategorisurat.id_kategori
+                                                    GROUP BY tbl_suratkonfirmasi.kd_suratkonfirmasi");
                             while($data=mysqli_fetch_array($q)){
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $data['nama'] ?></td>
-                                    <td><a href="file/surat/<?=$data['file_surat'] ?>" class="btn btn-info btn-xs" target="_blank" title="lihat file"><?= $data['file_surat'] ?></a></td>
+                                    <td><?= getOnlyFileSurat($data['file_surat']) ?></a></td>
                                     <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
-                                    <td><?= (!empty($data['file_surat'])) ? '<a class="btn btn-info btn-xs" href="file/'.$data['file_upload'].'" target="_blank">bukti upload</a>' : '' ?></td>
+                                    <td><?= buktiUpload($data['file_upload']) ?></td>
                                     <td><?= tanggal_indo($data['created_at']) ?></td>
+                                    <td><?= ketKategori($data['id_kategori'],$data['data']) ?></td>
                                     <td>
-                                        <a href="?page=listsuratlihat&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i> lihat</a>
+                                        <a href="?page=listsuratlihat&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i> lihat</a>
                                         <?php if ($data['id_kategori'] == 'KSURAT002'){
                                                 if($data['status_surat'] == 2){ ?>
-                                            <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-check-square"></i> disetujui jurusan</a>
-                                            <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> ditolak</a>
+                                            <a href="?page=listsuratacc&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+                                            <a href="?page=listsurattolak&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> ditolak</a>
                                             <?php } ?>
                                             <?php if($data['status_surat'] == 1){ ?>
-                                            <a href="?page=listsurataccperusahaan&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-check-square"></i> disetujui perusahaan</a>
-                                            <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> ditolak</a>
+                                            <a href="?page=listsurataccperusahaan&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-check-square"></i> disetujui perusahaan</a>
+                                            <a href="?page=listsurattolak&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> ditolak</a>
                                             <?php }} else { 
                                                 if($data['status_surat'] == 2){ ?>
-                                                <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-check-square"></i> disetujui jurusan</a>
-                                                <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> ditolak</a>
+                                                <a href="?page=listsuratacc&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+                                                <a href="?page=listsurattolak&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> ditolak</a>
                                         <?php }} ?>
                                     </td>
                                 </tr>

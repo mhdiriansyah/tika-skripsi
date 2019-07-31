@@ -6,16 +6,16 @@ include '../lib/koneksi.php';
 // menggunakan class dompdf
 $dompdf = new Dompdf();
 
-$get_id = mysqli_query($conn, "SELECT id_suratkonfirmasi FROM tbl_suratkonfirmasi WHERE SUBSTRING(id_suratkonfirmasi,1,2)='SK'") or die (mysqli_error($conn));
-$trim_id = mysqli_query($conn, "SELECT SUBSTRING(id_suratkonfirmasi,-6,6) as hasil FROM tbl_suratkonfirmasi WHERE SUBSTRING(id_suratkonfirmasi,1,2)='SK' ORDER BY hasil DESC LIMIT 1") or die (mysqli_error($conn));
-$hit    = mysqli_num_rows($get_id);
-if ($hit == 0){
-    $id_k   = "SK000001";
-} else if ($hit > 0){
-    $row    = mysqli_fetch_array($trim_id);
+$sql1 = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi");
+$sql2 = mysqli_query($conn, "SELECT SUBSTRING(kd_suratkonfirmasi,-6,6) as hasil FROM tbl_suratkonfirmasi WHERE SUBSTRING(kd_suratkonfirmasi,1,2)='SK' GROUP BY hasil ORDER BY hasil DESC LIMIT 1");
+$count = mysqli_num_rows($sql1);
+if ($count == 0){
+    $id_k = "SK000001";
+} else if ($count > 0){
+    $row    = mysqli_fetch_array($sql2);
     $kode   = $row['hasil']+1;
     $id_k   = "SK".str_pad($kode,6,"0",STR_PAD_LEFT); 
-} 
+}
 
 if (isset($_POST['submit'])){
     $id = $_POST['id'];
@@ -105,6 +105,7 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 $datas = json_decode($_POST['arrData']);
+$ket = $_POST['arrKet'];
 $idsurat = $_POST['id'];
 
 if ($idsurat == 'KSURAT002') {
@@ -119,12 +120,12 @@ if ($idsurat == 'KSURAT002') {
     $nice = json_encode($i);
 }
 
-foreach(json_decode($_POST['arrData']) as $row){
+foreach(json_decode($nice) as $row){
     $output = $dompdf->output();
     $filename = $id_k.".pdf";
     $date = date('Y-m-d');
-    mysqli_query($conn, "INSERT INTO tbl_suratkonfirmasi (id_suratkonfirmasi, id_kategori, status_surat, file_surat, data, created_at)
-                        VALUES ('$id_k', '$id', 2, '$filename', '$nice', '$date')");
+    mysqli_query($conn, "INSERT INTO tbl_suratkonfirmasi (kd_suratkonfirmasi, nim, id_kategori, status_surat, file_surat, data, created_at)
+                        VALUES ('$id_k', $row, '$id', 2, '$filename', '$ket', '$date')");
     file_put_contents('../file/surat/'.$filename, $output);    
 }
 // Output akan menghasilkan PDF (1 = download dan 0 = preview)

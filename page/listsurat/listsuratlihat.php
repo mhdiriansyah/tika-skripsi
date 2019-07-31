@@ -1,18 +1,13 @@
 <?php 
     $g = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi 
                             JOIN tbl_kategorisurat ON tbl_suratkonfirmasi.id_kategori=tbl_kategorisurat.id_kategori
-                            WHERE tbl_suratkonfirmasi.id_suratkonfirmasi='$_GET[id]'");
+                            WHERE tbl_suratkonfirmasi.kd_suratkonfirmasi='$_GET[id]'
+                            GROUP BY tbl_suratkonfirmasi.kd_suratkonfirmasi");
     $data = mysqli_fetch_array($g);
 
-    foreach(json_decode($data['data']) as $key){
-        $q = mysqli_query($conn, "SELECT * FROM tbl_mahasiswa WHERE nim='$key'");
-        $datas = mysqli_fetch_array($q);
-        $isi['nim'] = $datas['nim'];
-        $isi['nama_lengkap'] = $datas['nama_lengkap'];
-        $isi['semester'] = $datas['semester'];
-        $arr[] = $isi;
+    if ($data['view_admin'] == 0){
+        mysqli_query($conn, "UPDATE tbl_suratkonfirmasi SET view_admin=1 WHERE kd_suratkonfirmasi='$data[kd_suratkonfirmasi]'");
     }
-        $arrData = json_encode($arr)
 ?>
 <div class="panel panel-headline">
     <div class="panel-heading">
@@ -42,7 +37,7 @@
                     <tbody>
                         <tr>
                             <td>ID Surat</td>
-                            <td><span class="label label-success"><?= $data['id_suratkonfirmasi'] ?></span></td>
+                            <td><span class="label label-success"><?= $data['kd_suratkonfirmasi'] ?></span></td>
                         </tr>
                         <tr>
                             <td>Tipe Surat</td>
@@ -52,6 +47,12 @@
                             <td>Status</td>
                             <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
                         </tr>
+                        <tr>
+                            <td>Keterangan</td>
+                            <td>
+                            <?= ketKategori($data['id_kategori'],$data['data']) ?>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <table class="table table-striped">
@@ -59,15 +60,23 @@
                         <tr>
                             <th colspan="3">Data Mahasiswa</th>
                         </tr>
+                        <tr>
+                            <th>NIM</th>
+                            <th>Nama Lengkap</th>
+                            <th>Semester</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                            foreach(json_decode($arrData) as $key){
+                        <?php
+                            $sql = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi
+                                                    JOIN tbl_mahasiswa ON tbl_suratkonfirmasi.nim=tbl_mahasiswa.nim
+                                                    WHERE tbl_suratkonfirmasi.kd_suratkonfirmasi='$_GET[id]'");
+                            while($datas = mysqli_fetch_array($sql)){
                                 echo '<tr>';
-                                echo '<td>'.$key->nim.'</td>';
-                                echo '<td>'.$key->nama_lengkap.'</td>';
-                                echo '<td>'.$key->semester.'</td>';
-                                echo '</tr>';
+                                echo '<td>'.$datas['nim'].'</td>';
+                                echo '<td>'.$datas['nama_lengkap'].'</td>';
+                                echo '<td>'.$datas['semester'].'</td>';
+                                echo '<tr>';
                             }
                         ?>
                     </tbody>
@@ -80,16 +89,16 @@
         <?php 
         if ($data['id_kategori'] == 'KSURAT002'){
             if($data['status_surat'] == 2){ ?>
-        <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
-        <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
+        <a href="?page=listsuratacc&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+        <a href="?page=listsurattolak&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
         <?php } ?>
         <?php if($data['status_surat'] == 1){ ?>
-        <a href="?page=listsurataccperusahaan&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui perusahaan</a>
-        <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
+        <a href="?page=listsurataccperusahaan&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui perusahaan</a>
+        <a href="?page=listsurattolak&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
         <?php }} else { 
             if($data['status_surat'] == 2){ ?>
-             <a href="?page=listsuratacc&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
-             <a href="?page=listsurattolak&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
+             <a href="?page=listsuratacc&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary"><i class="fa fa-check-square"></i> disetujui jurusan</a>
+             <a href="?page=listsurattolak&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-danger"><i class="fa fa-remove"></i> ditolak</a>
         <?php }} ?>
     </div>
 </div>

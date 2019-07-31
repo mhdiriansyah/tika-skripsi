@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-warning alert-dismissible" role="alert">
-                    <i class="fa fa-info-circle"></i> Periksa kembali data-data dibawah ini. Jika ada <strong>NIM</strong> yang berstatus <strong>tidak terdaftar</strong> dan <strong> sedang aktif di surat yang berbeda</strong>, akan secara otomatis tidak tertera pada surat yang diajukan.
+                    <i class="fa fa-info-circle"></i> Periksa kembali data-data dibawah ini. Jika ada <strong>NIM</strong> yang berstatus <strong>tidak terdaftar</strong> dan <strong> kuota sudah melebihi kapasitas</strong>, akan secara otomatis tidak tertera pada surat yang diajukan.
                     Jika data sudah sesuai silahkan klik button proses :) 
                 </div>
             </div>
@@ -34,16 +34,6 @@
 
                         switch($id){
                             case 'KSURAT002': // sudah
-                                $sameArr = [];
-                                $r = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id' AND status_surat=0");
-                                $jum = mysqli_num_rows($r);
-                                if ($jum > 0){
-                                    while($same = mysqli_fetch_array($r)){
-                                        $sameArr = array_merge($sameArr, json_decode($same['data']));
-                                        $sameArr = array_unique($sameArr);
-                                        $sameArr = array_values($sameArr);
-                                    }
-                                }
                                 $arrNim = [];
                                 $arrData = [];
                                 if($counter>0){
@@ -59,12 +49,20 @@
                                     json_encode($arrNim);
 
                                 foreach($arrNim as $key => $value){
-                                    if (array_search($arrNim[$key], array_column($rowMahasiswa, 'nim')) !== false){
-                                        $isi['nim'] = $arrNim[$key];
-                                        $isi['status'] = '<span class="label label-info">terdaftar</span>';
-                                        $isi['code'] = 1;
+                                    if (array_search($value, array_column($rowMahasiswa, 'nim')) !== false){
+                                        $hit1 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id' AND status_surat=0 AND nim='$value'"));
+                                        $hit2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi WHERE id_kategori='$id' AND status_surat=3 AND nim='$value'"));
+                                        if ($hit1 >= 2 || $hit2 == 1){
+                                            $isi['nim'] = $value;
+                                            $isi['status'] = '<span class="label label-warning">kuota sudah melebihi kapasitas</span>';
+                                            $isi['code'] = 2;
+                                        } else {
+                                            $isi['nim'] = $value;
+                                            $isi['status'] = '<span class="label label-info">terdaftar</span>';
+                                            $isi['code'] = 1;
+                                        }
                                     } else {
-                                        $isi['nim'] = $arrNim[$key];
+                                        $isi['nim'] = $value;
                                         $isi['status'] = '<span class="label label-danger">tidak terdaftar</span>';
                                         $isi['code'] = 0;
                                     }
@@ -82,6 +80,13 @@
 
                                     $dArray = json_decode($arrayData);
                                     $kArray = json_decode($arrayKet);
+
+                                    $count = 0;
+                                    foreach($dArray as $value) {
+                                        if($value->code == 1){
+                                            $count++;
+                                        }
+                                    }
 
                                     $temp = '<div class="table-responsive">';
                                     $temp .= '<table class="table table-bordered"><thead><tr><th>Nim</th><th>Status</th></tr></thead><tbody>';
@@ -140,6 +145,8 @@
                                     $dArray = json_decode($arrayData);
                                     $kArray = json_decode($arrayKet);
 
+                                    $count = count($dArray);
+
                                     $temp = '<div class="table-responsive">';
                                     $temp .= '<table class="table table-bordered"><thead><tr><th>Nim</th><th>Status</th></tr></thead><tbody>';
                                     foreach($dArray as $row){
@@ -195,6 +202,8 @@
                                     $dArray = json_decode($arrayData);
                                     $kArray = json_decode($arrayKet);
 
+                                    $count = count($dArray);
+
                                     $temp = '<div class="table-responsive">';
                                     $temp .= '<table class="table table-bordered"><thead><tr><th>Nim</th><th>Status</th></tr></thead><tbody>';
                                     foreach($dArray as $row){
@@ -248,6 +257,8 @@
                                     $dArray = json_decode($arrayData);
                                     $kArray = json_decode($arrayKet);
 
+                                    $count = count($dArray);
+
                                     $temp = '<div class="table-responsive">';
                                     $temp .= '<table class="table table-bordered"><thead><tr><th>Nim</th><th>Status</th></tr></thead><tbody>';
                                     foreach($dArray as $row){
@@ -300,6 +311,7 @@
                                     $dArray = json_decode($arrayData);
                                     $kArray = json_decode($arrayKet);
 
+                                    $count = count($dArray);
 
                                     $temp = '<div class="table-responsive">';
                                     $temp .= '<table class="table table-bordered"><thead><tr><th>Nim</th><th>Status</th></tr></thead><tbody>';
@@ -329,7 +341,11 @@
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <textarea style="display:none;" name="arrData"><?= $arrayData ?></textarea>
                     <textarea style="display:none;" name="arrKet"><?= $arrayKet ?></textarea>
-                    <input type="submit" name="submit" class="btn btn-primary" value="Proses">
+                    <?php if ($count > 0){ ?>
+                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="Proses">
+                    <?php } else { ?>
+                    <a href="?page=surat" class="btn btn-danger btn-block">Kembali</a>
+                    <?php } ?>
                 </form>
             </div>
         </div>

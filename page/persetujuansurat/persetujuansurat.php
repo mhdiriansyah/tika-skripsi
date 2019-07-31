@@ -1,3 +1,4 @@
+
 <div class="panel panel-headline">
     <div class="panel-heading">
         <div class="row">
@@ -28,24 +29,35 @@
                             <?php 
                             $no = 1;
                             $q = mysqli_query($conn, "SELECT * FROM tbl_suratkonfirmasi
-                                                    JOIN tbl_kategorisurat ON tbl_suratkonfirmasi.id_kategori=tbl_kategorisurat.id_kategori");
-                            while($data=mysqli_fetch_array($q)){ 
-                                if (in_array($datauser['nim'], json_decode($data['data']))){
+                                                    JOIN tbl_kategorisurat ON tbl_suratkonfirmasi.id_kategori=tbl_kategorisurat.id_kategori
+                                                    WHERE tbl_suratkonfirmasi.nim='$datauser[nim]'");
+                            while($data=mysqli_fetch_array($q)){
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= getFileSurat($data['file_surat']) ?></td>
                                     <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
-                                    <td><?= (!empty($data['file_surat'])) ? '<a class="btn btn-info btn-xs" href="file/'.$data['file_upload'].'" target="_blank">bukti upload</a>' : '' ?></td>
+                                    <td><?= buktiUpload($data['file_upload']) ?></td>
                                     <td>
-                                    <?php if ($data['id_kategori'] == 'KSURAT002' && $data['status_surat'] == 1 && empty($data['file_surat'])){ ?>
-                                    <a href="?page=persetujuanupload&id=<?= $data['id_suratkonfirmasi'] ?>" class="btn btn-primary">Upload Bukti</a>
+                                    <?php if ($data['id_kategori'] == 'KSURAT002' && $data['status_surat'] == 1 && empty($data['file_upload'])){ ?>
+                                    <a href="?page=persetujuanupload&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-upload"></i> Upload Bukti</a>
                                     <?php } ?>
-                                    <a href="?page=persetujuansurathapus&id=<?= $data['id_suratkonfirmasi'] ?>&file=<?= $data['file_surat'] ?>" class="btn btn-danger" title="hapus"><i class="fa fa-trash"></i></a>
+                                    <?php 
+                                    if ($data['id_kategori'] == 'KSURAT002'){
+                                    if ($data['status_surat'] > 0 && $data['status_surat'] < 3){ ?>
+                                    <a href="?page=persetujuansurathapus&id=<?= $data['id_suratkonfirmasi'] ?>&file=<?= $data['file_surat'] ?>" class="btn btn-danger btn-xs" title="hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    <?php } else { ?>
+                                    <span class="label label-success"><i class="fa fa-check-circle"></i> selesai</span>
+                                    <?php }} else { 
+                                    if ($data['status_surat'] == 1){ ?>
+                                    <span class="label label-success"><i class="fa fa-check-circle"></i> selesai</span>
+                                    <?php } else { ?>
+                                    <a href="?page=persetujuansurathapus&id=<?= $data['id_suratkonfirmasi'] ?>&file=<?= $data['file_surat'] ?>" class="btn btn-danger btn-xs" title="hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    <?php }} ?>
                                     </td>
                                 </tr>
-                            <?php $no++; }} ?>
+                            <?php $no++;} ?>
                         </tbody>
                     </table>
                 </div>

@@ -25,7 +25,7 @@
                 <?php 
                 if (isset($_POST['submit'])){
                     $id = $_POST['id'];
-                    $update = mysqli_query($conn, "UPDATE tbl_suratkonfirmasi SET status_surat=0 WHERE id_suratkonfirmasi='$id'");
+                    $update = mysqli_query($conn, "UPDATE tbl_suratkonfirmasi SET status_surat=0 WHERE kd_suratkonfirmasi='$id'");
                     if ($update) {
                         echo    '<div class="alert alert-success" role="alert">'.
                                     '<i class="fa fa-check-circle"></i> Surat berhasil ditolak'.
