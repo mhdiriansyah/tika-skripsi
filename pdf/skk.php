@@ -109,7 +109,7 @@ include 'service.php';
                 <p>Jakarta, <?= tgl_indo(date('Y-m-d')) ?></p>
                 <p>Kepala Departemen Informatika</p>
                 <br><br><br>
-                <p style="font-weight:bold;">(MEILIA NUR INDAH S, ST., M.KOM)</p>
+                <p style="font-weight:bold;">(MEILIA NUR INDAH, S.ST., M.KOM)</p>
             </div>
         </div>
     </div>

@@ -85,9 +85,13 @@ function getFileSurat($params){
     return $temp;
 }
 
-function getOnlyFileSurat($params){
+function getOnlyFileSurat($params,$flag){
     if(!empty($params)){
-        $temp = '<a class="btn btn-info btn-xs" href="file/surat/'.$params.'" target="_blank" title="lihat file">'.$params.'</a>';
+        if($flag == 1){
+            $temp = '<a class="btn btn-info btn-xs" href="file/surat/'.$params.'" target="_blank" title="lihat file">'.$params.'</a>';
+        } else {
+            $temp = '<a class="btn btn-success btn-xs" href="file/final/'.$params.'" target="_blank" title="lihat file"><i class="fa fa-check-square"></i> '.$params.'</a>';
+        }
     } else {
         $temp = '<span class="label label-warning">belum ada file</span>';
     }

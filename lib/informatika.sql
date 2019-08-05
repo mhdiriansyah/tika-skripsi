@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 31, 2019 at 06:39 PM
+-- Generation Time: Aug 05, 2019 at 05:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -68,9 +68,9 @@ CREATE TABLE `tbl_mahasiswa` (
 --
 
 INSERT INTO `tbl_mahasiswa` (`nim`, `nama_lengkap`, `email`, `ipk`, `semester`, `password`, `terakhir_login`) VALUES
-('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 'VIII', '201431290', '2019-07-31 13:59:34'),
+('201431290', 'Muhammad Umar Ramadhana', 'umar@gmail.com', '3.80', 'VIII', '201431290', '2019-08-05 15:16:17'),
 ('201431291', 'Firman Giri Febriyanto', 'firman@gmail.com', '3.85', 'VIII', '201431291', '2019-07-30 17:23:34'),
-('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', 'pace1996', '2019-07-31 15:22:01'),
+('201431299', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', '3.63', 'VIII', 'pace1996', '2019-08-05 15:20:57'),
 ('201431300', 'Thufail Erlangga', 'erlangga@gmail.com', '3.55', 'VIII', '201431300', '2019-07-30 14:18:34'),
 ('201531002', 'Mahes', '201531002@sttpln.ac.id', '3.76', 'VII', '201531002', '2019-07-31 14:59:19'),
 ('201531029', 'Sri Fajar Riantri Alvani', 'riantri271@gmail.com', '3.89', 'VIII', '201531029', '2019-07-29 16:38:36');
@@ -88,12 +88,22 @@ CREATE TABLE `tbl_suratkonfirmasi` (
   `id_kategori` varchar(15) NOT NULL,
   `status_surat` int(1) NOT NULL,
   `file_surat` text NOT NULL,
+  `file_surat_final` text,
   `file_upload` text,
   `data` text NOT NULL,
   `view_admin` int(1) NOT NULL,
   `created_at` date DEFAULT NULL,
   `acc_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_suratkonfirmasi`
+--
+
+INSERT INTO `tbl_suratkonfirmasi` (`id_suratkonfirmasi`, `kd_suratkonfirmasi`, `nim`, `id_kategori`, `status_surat`, `file_surat`, `file_surat_final`, `file_upload`, `data`, `view_admin`, `created_at`, `acc_at`) VALUES
+(30, 'SK000001', '201431290', 'KSURAT001', 1, 'SK000001.pdf', 'SURAT_FINAL_SK000001.pdf', NULL, '[{\"tempat\":\"Abepura\",\"tgl_lahir\":\"05-06-1996\",\"alamat\":\"Bogor\"}]', 1, '2019-07-31', '2019-08-05'),
+(31, 'SK000002', '201431290', 'KSURAT002', 3, 'SK000002.pdf', 'SURAT_FINAL_SK000002.pdf', 'BUKTI_SK000002.pdf', '[{\"ditujukan\":\"HRD Ralali.com\",\"nama_perusahaan\":\"Ralali.com\",\"alamat_perusahaan\":\"Blugreen Office, Kav 88 Kelurahan Kembangan Jakarta Barat\",\"periode_awal\":\"30-07-2019\",\"periode_akhir\":\"26-11-2019\"}]', 1, '2019-07-31', '2019-08-05'),
+(32, 'SK000002', '201431299', 'KSURAT002', 3, 'SK000002.pdf', 'SURAT_FINAL_SK000002.pdf', 'BUKTI_SK000002.pdf', '[{\"ditujukan\":\"HRD Ralali.com\",\"nama_perusahaan\":\"Ralali.com\",\"alamat_perusahaan\":\"Blugreen Office, Kav 88 Kelurahan Kembangan Jakarta Barat\",\"periode_awal\":\"30-07-2019\",\"periode_akhir\":\"26-11-2019\"}]', 1, '2019-07-31', '2019-08-05');
 
 -- --------------------------------------------------------
 
@@ -114,7 +124,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `role`, `terakhir_login`) VALUES
-(1, 'admin', 'admin11', 1, '2019-07-31 16:36:47');
+(1, 'admin', 'admin11', 1, '2019-08-05 10:48:00');
 
 --
 -- Indexes for dumped tables
@@ -154,7 +164,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_suratkonfirmasi`
 --
 ALTER TABLE `tbl_suratkonfirmasi`
-  MODIFY `id_suratkonfirmasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_suratkonfirmasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

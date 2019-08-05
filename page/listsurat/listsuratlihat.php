@@ -44,6 +44,10 @@
                             <td><?= $data['nama'] ?></td>
                         </tr>
                         <tr>
+                            <td>File Surat Final</td>
+                            <td><?= getOnlyFileSurat($data['file_surat_final'],2) ?></td>
+                        </tr>
+                        <tr>
                             <td>Status</td>
                             <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
                         </tr>

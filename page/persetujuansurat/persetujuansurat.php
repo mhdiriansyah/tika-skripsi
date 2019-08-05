@@ -20,8 +20,9 @@
                                 <th>No</th>
                                 <th>Surat</th>
                                 <th>File</th>
-                                <th>Status</th>
+                                <th>File Surat Final</th>
                                 <th>Bukti Upload</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -34,11 +35,12 @@
                             while($data=mysqli_fetch_array($q)){
                                 ?>
                                 <tr>
-                                    <td><?= $no ?></td>
+                                    <td><?= $no ?>.</td>
                                     <td><?= $data['nama'] ?></td>
-                                    <td><?= getFileSurat($data['file_surat']) ?></td>
-                                    <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
+                                    <td><?= getOnlyFileSurat($data['file_surat'],1) ?></td>
+                                    <td><?= getOnlyFileSurat($data['file_surat_final'],2) ?></td>
                                     <td><?= buktiUpload($data['file_upload']) ?></td>
+                                    <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
                                     <td>
                                     <?php if ($data['id_kategori'] == 'KSURAT002' && $data['status_surat'] == 1 && empty($data['file_upload'])){ ?>
                                     <a href="?page=persetujuanupload&id=<?= $data['kd_suratkonfirmasi'] ?>" class="btn btn-primary btn-xs"><i class="fa fa-upload"></i> Upload Bukti</a>

@@ -25,6 +25,7 @@
                                 <th>No</th>
                                 <th>Surat</th>
                                 <th>File</th>
+                                <th>File Surat Final</th>
                                 <th>Status</th>
                                 <th>Bukti Upload</th>
                                 <th>Dibuat</th>
@@ -41,9 +42,10 @@
                             while($data=mysqli_fetch_array($q)){
                                 ?>
                                 <tr>
-                                    <td><?= $no ?></td>
+                                    <td><?= $no ?>.</td>
                                     <td><?= $data['nama'] ?></td>
-                                    <td><?= getOnlyFileSurat($data['file_surat']) ?></a></td>
+                                    <td><?= getOnlyFileSurat($data['file_surat'],1) ?></td>
+                                    <td><?= getOnlyFileSurat($data['file_surat_final'],2) ?></td>
                                     <td><?= getStatus($data['id_kategori'],$data['status_surat']) ?></td>
                                     <td><?= buktiUpload($data['file_upload']) ?></td>
                                     <td><?= tanggal_indo($data['created_at']) ?></td>
