@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 05, 2019 at 05:24 PM
+-- Generation Time: Aug 05, 2019 at 05:30 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -95,15 +95,6 @@ CREATE TABLE `tbl_suratkonfirmasi` (
   `created_at` date DEFAULT NULL,
   `acc_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_suratkonfirmasi`
---
-
-INSERT INTO `tbl_suratkonfirmasi` (`id_suratkonfirmasi`, `kd_suratkonfirmasi`, `nim`, `id_kategori`, `status_surat`, `file_surat`, `file_surat_final`, `file_upload`, `data`, `view_admin`, `created_at`, `acc_at`) VALUES
-(30, 'SK000001', '201431290', 'KSURAT001', 1, 'SK000001.pdf', 'SURAT_FINAL_SK000001.pdf', NULL, '[{\"tempat\":\"Abepura\",\"tgl_lahir\":\"05-06-1996\",\"alamat\":\"Bogor\"}]', 1, '2019-07-31', '2019-08-05'),
-(31, 'SK000002', '201431290', 'KSURAT002', 3, 'SK000002.pdf', 'SURAT_FINAL_SK000002.pdf', 'BUKTI_SK000002.pdf', '[{\"ditujukan\":\"HRD Ralali.com\",\"nama_perusahaan\":\"Ralali.com\",\"alamat_perusahaan\":\"Blugreen Office, Kav 88 Kelurahan Kembangan Jakarta Barat\",\"periode_awal\":\"30-07-2019\",\"periode_akhir\":\"26-11-2019\"}]', 1, '2019-07-31', '2019-08-05'),
-(32, 'SK000002', '201431299', 'KSURAT002', 3, 'SK000002.pdf', 'SURAT_FINAL_SK000002.pdf', 'BUKTI_SK000002.pdf', '[{\"ditujukan\":\"HRD Ralali.com\",\"nama_perusahaan\":\"Ralali.com\",\"alamat_perusahaan\":\"Blugreen Office, Kav 88 Kelurahan Kembangan Jakarta Barat\",\"periode_awal\":\"30-07-2019\",\"periode_akhir\":\"26-11-2019\"}]', 1, '2019-07-31', '2019-08-05');
 
 -- --------------------------------------------------------
 
