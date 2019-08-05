@@ -12,7 +12,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <form action="?page=listsuratacc" method="post" enctype="multipart/form-data">
+                <form action="?page=listsuratacc2" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div clas="form-group">
